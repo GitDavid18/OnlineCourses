@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Check Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+    This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+    Checkstyle-Configuration: Checkstyle Coursera
+    Description: none
+-->
+<module name="Checker">
+  <property name="severity" value="warning"/>
+  <property name="basedir" value="${basedir}"/>
+  <property name="localeCountry" value="US"/>
+  <property name="localeLanguage" value="en"/>
+  <property name="charset" value="UTF-8"/>
+  <property name="haltOnException" value="false"/>
+  <module name="TreeWalker">
+    <property name="tabWidth" value="4"/>
+    <module name="EmptyCatchBlock"/>
+    <module name="AvoidNestedBlocks">
+      <message key="block.nested" value="Avoid nested blocks: the curly braces serve no purpose."/>
+    </module>
+    <module name="NeedBraces">
+      <property name="tokens" value="LITERAL_DO"/>
+    </module>
+    <module name="InterfaceIsType">
+      <message key="interface.type" value="An interface must describe a type (and have methods)."/>
+    </module>
+    <module name="MutableException"/>
+    <module name="ThrowsCount"/>
+    <module name="OneTopLevelClass">
+      <message key="one.top.level.class" value="The .java file must have exactly one top-level class."/>
+    </module>
+    <module name="CovariantEquals">
+      <message key="covariant.equals" value="The type of the parameter variable for the ''equals()'' method must be ''Object''."/>
+    </module>
+    <module name="EmptyStatement">
+      <message key="empty.statement" value="Are you sure you want an empty statement here? An empty statement might indicate a superfluous semicolon."/>
+    </module>
+    <module name="HiddenField">
+      <property name="ignoreConstructorParameter" value="true"/>
+      <property name="ignoreSetter" value="true"/>
+      <message key="hidden.field" value="The local (or parameter) variable ''{0}'' has the same name as an instance variable. Use a different name."/>
+    </module>
+    <module name="InnerAssignment"/>
+    <module name="ModifiedControlVariable">
+      <message key="modified.control.variable" value="Control variable ''{0}'' is modified inside loop."/>
+    </module>
+    <module name="SimplifyBooleanExpression">
+      <message key="simplify.expression" value="Boolean expression can be simplified, e.g., use ''if (!isEmpty)'' instead of ''if (isEmpty == false)''."/>
+    </module>
+    <module name="SimplifyBooleanReturn">
+      <message key="simplify.boolreturn" value="Conditional logic can be removed in return statement, e.g., use ''return x &gt;= 0'' instead of ''if (x &gt;= 0) return true; else return false;''."/>
+    </module>
+    <module name="StringLiteralEquality">
+      <message key="string.literal.equality" value="Compare string literals using ''equals()'', not ''{0}''."/>
+    </module>
+    <module name="NestedForDepth">
+      <property name="max" value="4"/>
+    </module>
+    <module name="NestedIfDepth">
+      <property name="max" value="3"/>
+    </module>
+    <module name="NestedTryDepth"/>
+    <module name="NoClone"/>
+    <module name="NoFinalizer"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="IllegalType">
+      <property name="severity" value="error"/>
+      <property name="illegalClassNames" value="java.lang.Compiler,          Compiler,                                                       java.lang.ClassLoader,       ClassLoader,                                                       java.lang.Class,             Class,                                                       java.lang.Process,           Process,                                                       java.lang.Runtime,           Runtime,                                                       java.lang.RuntimePermission, RuntimePermission,                                                       java.lang.SecurityManager,   SecurityManager,                                                       java.lang.System,            System,                                                       java.lang.Thread,            Thread,                                                       java.lang.ThreadGroup,       ThreadGroup,                                                       java.lang.ThreadLocal,       ThreadLocal"/>
+      <message key="illegal.type" value="Do not use the data type ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalType">
+      <property name="severity" value="error"/>
+      <property name="illegalClassNames" value="java.util.IdentityHashMap,                                                       java.util.Locale,                                                       java.util.Locale.Builder,                                                       java.util.WeakHashMap,                                                       java.util.Observable,                                                       java.util.Properties,                                                       java.util.TimerTask,                                                       java.util.Timer,                                                       java.util.concurrent.TransferQueue,                                                       java.util.concurrent.BlockingQueue,                                                       java.util.concurrent.BlockingDeque,                                                       java.util.concurrent.ArrayBlockingQueue,                                                       java.util.concurrent.ConcurrentHashMap,                                                       java.util.concurrent.ConcurrentLinkedDeque,                                                       java.util.concurrent.ConcurrentLinkedQueue,                                                       java.util.concurrent.ConcurrentSkipListMap,                                                       java.util.concurrent.ConcurrentSkipListSet,                                                       java.util.concurrent.CopyOnWriteArrayList,                                                       java.util.concurrent.CopyOnWriteArraySet,                                                       java.util.concurrent.DelayQueue,                                                       java.util.concurrent.LinkedBlockingDeque,                                                       java.util.concurrent.LinkedBlockingQueue,                                                       java.util.concurrent.LinkedTransferQueue,                                                       java.util.concurrent.PriorityBlockingQueue,                                                       java.util.concurrent.SynchronousQueue"/>
+      <message key="illegal.type" value="Do not use the ''{0}'' data type in this course."/>
+    </module>
+    <module name="IllegalType">
+      <property name="illegalClassNames" value="java.util.Vector"/>
+      <message key="illegal.type" value="Do not use ''java.util.Vector'' in this course. Instead, use ''java.util.ArrayList'' or ''java.util.LinkedList''."/>
+    </module>
+    <module name="IllegalType">
+      <property name="illegalClassNames" value="StringBuffer,java.lang.StringBuffer"/>
+      <message key="illegal.type" value="Do not use ''{0}'' in this course. Instead, use ''StringBuilder''."/>
+    </module>
+    <module name="IllegalType">
+      <property name="illegalClassNames" value="java.util.Hashtable"/>
+      <message key="illegal.type" value="Do not use ''java.util.Hashtable'' in this course. Instead, use ''java.util.HashMap''."/>
+    </module>
+    <module name="IllegalType">
+      <property name="illegalClassNames" value="java.util.Random"/>
+      <message key="illegal.type" value="Do not use ''java.util.Random'' in this course. Instead, use an appropriate method from ''StdRandom''."/>
+    </module>
+    <module name="IllegalType">
+      <property name="id" value="WrapperType"/>
+      <property name="illegalClassNames" value="java.lang.Boolean,   Boolean,                                                       java.lang.Integer,   Integer,                                                       java.lang.Double,    Double,                                                       java.lang.Long,      Long,                                                       java.lang.Short,     Short,                                                       java.lang.Float,     Float,                                                       java.lang.Byte,      Byte,                                                       java.lang.Character, Character"/>
+      <message key="illegal.type" value="Use the primitive type instead of the corresponding wrapper type ''{0}''. For example, use ''boolean'' instead of ''Boolean''."/>
+    </module>
+    <module name="DeclarationOrder">
+      <message key="declaration.order.constructor" value="Define constructors after static and instance variables but before methods."/>
+      <message key="declaration.order.method" value="Define methods after static variables, instance variables, and constructors."/>
+      <message key="declaration.order.instance" value="Declare instance variables after static variables but before constructors and methods."/>
+      <message key="declaration.order.access" value="Declare static and instance variables in order of their access modifiers: public, protected, package, and private."/>
+      <message key="declaration.order.static" value="Declare static variables before instance variables, constructors, and methods."/>
+    </module>
+    <module name="DefaultComesLast"/>
+    <module name="FallThrough"/>
+    <module name="OneStatementPerLine">
+      <message key="multiple.statements.line" value="Do not put multiple statements on the same line."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="id" value="Float"/>
+      <property name="tokens" value="LITERAL_FLOAT"/>
+      <message key="illegal.token" value="Use the primitive type ''double'' instead of the primitive type ''float''."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="Float"/>
+      <property name="tokens" value="NUM_FLOAT"/>
+      <property name="format" value="^.*f$"/>
+      <message key="illegal.token.text" value="Use a ''double'' literal instead of a ''float'' literal."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="FloatingPointLiteral"/>
+      <property name="tokens" value="NUM_FLOAT, NUM_DOUBLE"/>
+      <property name="format" value="^\..*"/>
+      <message key="illegal.token.text" value="Use at least one digit to the left of the decimal point. For example, use the literal ''0.5'' instead of ''.5''."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="OctalLiteral"/>
+      <property name="tokens" value="NUM_INT,NUM_LONG"/>
+      <property name="format" value="^0[^lxb]"/>
+      <property name="ignoreCase" value="true"/>
+      <message key="illegal.token.text" value="A leading 0 in an integer literal signifies that it is an octal (base-8) integer."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="IntegerLiteral"/>
+      <property name="tokens" value="NUM_INT,NUM_LONG"/>
+      <property name="format" value="^2147483647L?$"/>
+      <message key="illegal.token.text" value="Use the named constant ''Integer.MAX_VALUE'' instead of ''2147483647''."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="IntegerLiteral"/>
+      <property name="tokens" value="NUM_INT,NUM_LONG"/>
+      <property name="format" value="^2147483648L?$"/>
+      <message key="illegal.token.text" value="Use the named constant ''Integer.MIN_VALUE'' instead of ''-2147483648''."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="LongLiteral"/>
+      <property name="tokens" value="NUM_LONG"/>
+      <property name="format" value="^9223372036854775807L$"/>
+      <message key="illegal.token.text" value="Use the named constant ''Long.MAX_VALUE'' instead of ''9223372036854775807L''."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="LongLiteral"/>
+      <property name="tokens" value="NUM_LONG"/>
+      <property name="format" value="^9223372036854775808L$"/>
+      <message key="illegal.token.text" value="Use the named constant ''Long.MIN_VALUE'' instead of ''-9223372036854775808L''."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="WhitespaceAfter"/>
+      <property name="tokens" value="COMMENT_CONTENT"/>
+      <property name="format" value="^[\*/]*[A-Za-z0-9]"/>
+      <message key="illegal.token.text" value="''//'' or ''/*'' is not followed by whitespace."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="EmptyComment"/>
+      <property name="tokens" value="COMMENT_CONTENT"/>
+      <property name="format" value="^\s*$"/>
+      <message key="illegal.token.text" value="The comment is empty."/>
+    </module>
+    <module name="IllegalTokenText">
+      <property name="id" value="IdentifierName"/>
+      <property name="tokens" value="IDENT"/>
+      <property name="format" value="^(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)$"/>
+      <property name="ignoreCase" value="true"/>
+      <message key="illegal.token.text" value="Do not use the name of a number (such as ''ten'') as a variable name (or other identifier)."/>
+    </module>
+    <module name="AvoidStaticImport">
+      <message key="import.avoidStatic" value="Do not use static imports."/>
+    </module>
+    <module name="RedundantImport">
+      <message key="import.same" value="Unnecessary import statement for ''{0}'' becaue it is in the same package as this class."/>
+      <message key="import.duplicate" value="Duplicate import statement for ''{1}''."/>
+      <message key="import.lang" value="Unnecessary import statement for ''{0}'' because it is from the package ''java.lang''."/>
+    </module>
+    <module name="UnusedImports">
+      <message key="import.unused" value="Unused import statement for ''{0}''."/>
+    </module>
+    <module name="AvoidStarImport">
+      <message key="import.avoidStar" value="Do not use .* in import statements."/>
+    </module>
+    <module name="TodoComment"/>
+    <module name="UpperEll">
+      <message key="upperEll" value="Use an uppercase ''L'' instead of a lowercase ''l'' to specify a literal of type long."/>
+    </module>
+    <module name="ArrayTypeStyle">
+      <message key="array.type.style" value="To specify an array type, put the square brackets before the variable name, e.g., ''String[] args'' instead of ''String args[]''."/>
+    </module>
+    <module name="OuterTypeFilename">
+      <message key="type.file.mismatch" value="The name of the outer type and the file do not match. For example, the class Point must be in a file named Point.java."/>
+    </module>
+    <module name="DescendantToken">
+      <property name="id" value="AssertSideEffect"/>
+      <property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,                 POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,                 BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN"/>
+      <property name="maximumNumber" value="0"/>
+      <property name="maximumMessage" value="Assert statements must not produce side effects."/>
+    </module>
+    <module name="DescendantToken">
+      <property name="id" value="UselessCompare"/>
+      <property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/>
+      <property name="maximumDepth" value="1"/>
+      <property name="maximumNumber" value="1"/>
+      <property name="sumTokenCounts" value="true"/>
+      <property name="maximumMessage" value="Do not compare ''this'' with ''null''; it is never null."/>
+    </module>
+    <module name="ModifierOrder">
+      <message key="mod.order" value="The modifier ''{0}'' is out of order. The preferred order is [''public'', ''protected'', ''private'', ''abstract'', ''static'', ''final'', ''transient'', ''volatile'', ''synchronized'', ''native'', and ''strictfp'']."/>
+    </module>
+    <module name="RedundantModifier">
+      <property name="tokens" value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,                                            INTERFACE_DEF,CLASS_DEF,ENUM_DEF"/>
+    </module>
+    <module name="ConstantName">
+      <message key="name.invalidPattern" value="The constant ''{0}'' must be ALL_UPPERCASE, with words separated by underscores."/>
+    </module>
+    <module name="LocalFinalVariableName">
+      <property name="format" value="^([a-z][a-zA-Z0-9]*|[A-Z][A-Z_0-9]*)$"/>
+      <message key="name.invalidPattern" value="The local final variable ''{0}'' must start with a lowercase letter and use camelCase (or be ALL_UPPERCASE if it is a constant)."/>
+    </module>
+    <module name="LocalVariableName">
+      <property name="format" value="^([a-z][a-zA-Z0-9]*|[A-Z][A-Z_0-9]+|G)$"/>
+      <message key="name.invalidPattern" value="The local variable ''{0}'' must start with a lowercase letter and use camelCase."/>
+    </module>
+    <module name="MemberName">
+      <property name="format" value="^([a-z][a-zA-Z0-9]*|G)$"/>
+      <message key="name.invalidPattern" value="The instance variable ''{0}'' must start with a lowercase letter and use camelCase."/>
+    </module>
+    <module name="MethodName">
+      <message key="name.invalidPattern" value="The method ''{0}'' must start with a lowercase letter and use camelCase."/>
+      <message key="method.name.equals.class.name" value="The method name ''{0}'' must not be identical to the class name. Remove the return type if you intended to define a constructor instead of a method."/>
+    </module>
+    <module name="PackageName">
+      <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+      <message key="name.invalidPattern" value="The package ''{0}'' must be lowercase, with package components separated by dots."/>
+    </module>
+    <module name="ParameterName">
+      <property name="format" value="^([a-z][a-zA-Z0-9]*|G)$"/>
+      <message key="name.invalidPattern" value="The parameter variable ''{0}'' must start with a lowercase letter and use camelCase."/>
+    </module>
+    <module name="StaticVariableName">
+      <message key="name.invalidPattern" value="The static variable ''{0}'' must start with a lowercase letter and use camelCase. If you intended ''{0}'' to be a constant, add the modifier ''final'' immediately after ''static'' and use ALL_UPPERCASE."/>
+    </module>
+    <module name="TypeName">
+      <message key="name.invalidPattern" value="The class ''{0}'' must start with an uppercase letter and use CamelCase."/>
+    </module>
+    <module name="ClassTypeParameterName">
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern" value="The type parameter ''{0}'' must either be a single uppercase letter or start with an uppercase letter and use CamelCase."/>
+    </module>
+    <module name="MethodTypeParameterName">
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern" value="The type parameter ''{0}'' must either be a single uppercase letter or start with an uppercase letter and use CamelCase."/>
+    </module>
+    <module name="InterfaceTypeParameterName">
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern" value="The type parameter ''{0}'' must either be a single uppercase letter or start with an uppercase letter and use CamelCase."/>
+    </module>
+    <module name="MemberName">
+      <property name="format" value="^(?!l$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''l'' as an instance variable name. It is hard to distinguish from the number ''1''."/>
+    </module>
+    <module name="LocalVariableName">
+      <property name="format" value="^(?!l$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''l'' as a local variable name. It is hard to distinguish from the number ''1''."/>
+    </module>
+    <module name="StaticVariableName">
+      <property name="format" value="^(?!l$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''l'' as a static variable name. It is hard to distinguish from the number ''1''."/>
+    </module>
+    <module name="ParameterName">
+      <property name="format" value="^(?!l$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''l'' as a parameter variable name. It is hard to distinguish from the number ''1''."/>
+    </module>
+    <module name="MemberName">
+      <property name="format" value="^(?!o$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''o'' as an instance variable name. It is hard to distinguish from the number ''0''."/>
+    </module>
+    <module name="LocalVariableName">
+      <property name="format" value="^(?!o$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''o'' as a local variable name. It is hard to distinguish from the number ''0''."/>
+    </module>
+    <module name="StaticVariableName">
+      <property name="format" value="^(?!o$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''o'' as a static variable name. It is hard to distinguish from the number ''0''."/>
+    </module>
+    <module name="ParameterName">
+      <property name="format" value="^(?!o$).*"/>
+      <message key="name.invalidPattern" value="Do not use the letter ''o'' as a parameter variable name. It is hard to distinguish from the number ''0''."/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="DeprecatedMethod"/>
+      <property name="format" value="\bStdDraw\.show\(\d+\)"/>
+      <property name="message" value="The method ''StdDraw.show(int)'' is deprecated. Use ''StdDraw.enableDoubleBuffering()'', ''StdDraw.show()'', and ''StdDraw.pause(int)'' instead."/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="Performance"/>
+      <property name="format" value="\bMath\.pow\([^,]*, *3(\.0?)?\)"/>
+      <property name="message" value="''Math.pow(x, 3)'' is slow. Use ''x*x*x'' instead."/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="Sqrt"/>
+      <property name="format" value="\bMath\.pow\([^,]*, *0?\.5\)"/>
+      <property name="message" value="Use ''Math.sqrt(x)'' instead of ''Math.pow(x, 0.5)''."/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="Infinity"/>
+      <property name="format" value="\bDouble\.MIN_VALUE\b"/>
+      <property name="message" value="''Double.MIN_VALUE'' is the smallest positive double. Did you mean to use ''Double.NEGATIVE_INFINITY'' instead?"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="Infinity"/>
+      <property name="format" value="\bDouble\.MAX_VALUE\b"/>
+      <property name="message" value="Did you mean to use ''Double.POSITIVE_INFINITY'' instead of ''Double.MAX_VALUE''?"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="AnonInnerLength"/>
+    <module name="ParameterNumber"/>
+    <module name="OuterTypeNumber">
+      <message key="maxOuterTypes" value="Your program defines {0,number,integer} outer types, but there should be only 1."/>
+    </module>
+    <module name="MethodCount"/>
+    <module name="GenericWhitespace"/>
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyForIteratorPad"/>
+    <module name="MethodParamPad"/>
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+    </module>
+    <module name="NoWhitespaceBefore"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+    <module name="WhitespaceAfter">
+      <message key="ws.typeCast" value="Typecast is not followed by whitespace."/>
+    </module>
+    <module name="WhitespaceAround">
+      <property name="tokens" value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR,                     BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON,  DIV_ASSIGN,                    EQUAL, GE, GT, LAND, LCURLY, LE, LITERAL_ASSERT,                    LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY,                    LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SYNCHRONIZED,                    LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS_ASSIGN, MOD,                    MOD_ASSIGN, NOT_EQUAL, PLUS_ASSIGN, QUESTION, RCURLY,                    SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR_ASSIGN,                    TYPE_EXTENSION_AND"/>
+    </module>
+    <module name="SuppressWarnings">
+      <property name="severity" value="ignore"/>
+      <property name="format" value=".*"/>
+      <property name="tokens" value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,                             ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF,PARAMETER_DEF,VARIABLE_DEF"/>
+      <message key="suppressed.warning.not.allowed" value="Do not suppress warnings in this course."/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="error"/>
+    </module>
+    <module name="IllegalToken">
+      <property name="tokens" value="EXTENDS_CLAUSE"/>
+      <message key="illegal.token" value="Do not use implementation inheritance in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="id" value="TypeParameter"/>
+      <property name="tokens" value="TYPE_UPPER_BOUNDS, TYPE_LOWER_BOUNDS, TYPE_EXTENSION_AND"/>
+      <message key="illegal.token" value="You should not need to use type upper or lower bounds in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="id" value="TypeParameter"/>
+      <property name="tokens" value="WILDCARD_TYPE"/>
+      <message key="illegal.token" value="You should not need to use wildcard types in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="id" value="BitwiseXor"/>
+      <property name="tokens" value="BXOR, BXOR_ASSIGN"/>
+      <message key="illegal.token" value="Did you mean to use ''Math.pow()'' instead of the bitwise XOR operator (''^'') ?"/>
+    </module>
+    <module name="IllegalToken">
+      <property name="severity" value="error"/>
+      <property name="tokens" value="PACKAGE_DEF"/>
+      <message key="illegal.token" value="Do not define packages in this course. You must use the default (no-name) package in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="severity" value="error"/>
+      <property name="tokens" value="LITERAL_NATIVE, STRICTFP, LITERAL_VOLATILE, LITERAL_TRANSIENT, LITERAL_SYNCHRONIZED"/>
+      <message key="illegal.token" value="Do not use the keyword ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="severity" value="error"/>
+      <property name="tokens" value="LITERAL_THROWS, LITERAL_SUPER, LITERAL_PROTECTED, ABSTRACT"/>
+      <message key="illegal.token" value="Do not use the keyword ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="severity" value="error"/>
+      <property name="id" value="StaticInitializer"/>
+      <property name="tokens" value="STATIC_INIT"/>
+      <message key="illegal.token" value="Do not use static initializers in this course."/>
+    </module>
+    <module name="IllegalToken">
+      <property name="tokens" value="LITERAL_INSTANCEOF"/>
+      <message key="illegal.token" value="Do not use the ''instanceof'' operator in this course. Use ''getClass()'' to compare classes."/>
+    </module>
+    <module name="IllegalCatch">
+      <property name="severity" value="error"/>
+      <property name="illegalClassNames" value="java.lang.Exception,                                                       java.lang.Throwable,                                                       java.lang.RuntimeException,                                                       java.lang.AssertionError,                                                       java.lang.VirtualMachineError,                                                       java.lang.InternalError,                                                       java.lang.StackOverflowError,                                                       java.lang.UnknownError,                                                       java.lang.OutOfMemoryError"/>
+      <message key="illegal.catch" value="Do not catch ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalThrows">
+      <property name="illegalClassNames" value="java.lang.Throwable,                                                       java.lang.Error,                                                       java.lang.Exception,                                                       java.lang.RuntimeException"/>
+      <message key="illegal.throw" value="Do not throw ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalThrows">
+      <property name="illegalClassNames" value="java.lang.NullPointerException"/>
+      <property name="ignoredMethodNames" value="compare,compareTo"/>
+      <message key="illegal.throw" value="Do not throw ''{0}'' in this method."/>
+    </module>
+    <module name="IllegalImport">
+      <property name="severity" value="error"/>
+      <property name="illegalClasses" value="^java\.awt\.(?!Color$).*$"/>
+      <property name="regexp" value="true"/>
+      <message key="import.illegal" value="Do not import ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalImport">
+      <property name="severity" value="error"/>
+      <property name="illegalClasses" value="^java\.(util|lang)\..+\..*$"/>
+      <property name="regexp" value="true"/>
+      <message key="import.illegal" value="Do not import ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalImport">
+      <property name="severity" value="error"/>
+      <property name="illegalPkgs" value="java.applet,                                                 java.beans,                                                 java.math,                                                 java.net,                                                 java.rmi,                                                 java.security,                                                 java.sql,                                                 java.text,                                                 java.time,                                                 javax,                                                 org,                                                 sun"/>
+      <message key="import.illegal" value="Do not import ''{0}'' in this course."/>
+    </module>
+    <module name="IllegalImport">
+      <property name="severity" value="error"/>
+      <property name="illegalPkgs" value="edu.princeton.cs.introcs,                                                 java.nio,                                                 java.io"/>
+      <message key="import.illegal" value="Do not import ''{0}'' in this course. Instead, use the I/O libraries in edu.princeton.cs.algs4."/>
+    </module>
+  </module>
+  <module name="SuppressionFilter">
+    <property name="file" value="${suppressions}"/>
+  </module>
+  <module name="FileTabCharacter">
+    <property name="fileExtensions" value="java, toy, txt"/>
+    <message key="containsTab" value="Line contains a tab character. Configure your editor to replace tabs with spaces."/>
+    <message key="file.containsTab" value="File contains tab characters (this is the first occurrence). Configure your editor to replace tabs with spaces."/>
+  </module>
+  <module name="FileLength">
+    <property name="max" value="1500"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="[^\x00-\x7F]"/>
+    <property name="message" value="Line contains a non-ASCII character."/>
+    <property name="fileExtensions" value="toy"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]"/>
+    <property name="message" value="Line contains either a non-printable or control character."/>
+    <property name="fileExtensions" value="txt, java, toy"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="id" value="RichTextFormat"/>
+    <property name="format" value="\A\{\\rtf1\\ansi\\ansicpg1252"/>
+    <property name="message" value="This appears to be a Rich Text Format (RTF) file. Reconfigure your editor to save as an ASCII or UTF-8 text file."/>
+    <property name="fileExtensions" value="txt, java, toy"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="id" value="ByteOrderMark"/>
+    <property name="format" value="\A[\uFEFF\uFFEF]"/>
+    <property name="message" value="This file appears to be setting the byte order mark (BOM)."/>
+    <property name="fileExtensions" value="txt, java, toy"/>
+  </module>
+  <module name="RegexpOnFilename">
+    <property name="severity" value="error"/>
+    <property name="fileNamePattern" value="^(StdIn|StdOut|StdDraw|StdAudio|StdRandom|StdStats|StdArrayIO|                                                   |In|Out|BinaryStdIn|BinaryStdOut|BinaryIn|BinaryOut|Draw|Picture|                                                   |Stack|Queue|MinPQ|MaxPQ|ST|SET|                                                   |RectHV|Point2D|                                                   |UF|QuickUnionUF|QuickFindUF|WeightedQuickUnionUF|                                                   |Graph|Digraph|Edge|DirectedEdge|FlowEdge|                                                   |DirectedCycle|Topological|FordFulkerson|                                                   |OperationCountLimitExceededException)$"/>
+    <property name="ignoreFileNameExtensions" value="true"/>
+    <property name="fileExtensions" value="java"/>
+    <message key="regexp.filename.match" value="Do not submit a file with this name; it is the name of a class in ''algs4.jar''."/>
+  </module>
+  <module name="RegexpOnFilename">
+    <property name="severity" value="error"/>
+    <property name="fileNamePattern" value="226$"/>
+    <property name="ignoreFileNameExtensions" value="true"/>
+    <property name="fileExtensions" value="java"/>
+    <message key="regexp.filename.match" value="Do not submit a file whose name ends in ''226''; that suffix is reserved by the autograder."/>
+  </module>
+</module>
