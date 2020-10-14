@@ -13,26 +13,27 @@ Actual problem: Start at: http://python-data.dr-chuck.net/known_by_Blanka.html
 Find the link at position 18 (the first name is 1). Follow that link. Repeat this process 7 times. The answer is the last name that you retrieve.
 Hint: The first character of the name of the last page that you will load is: L
 '''
-
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
-url = raw_input('Enter Url: ')
-count = int(raw_input("Enter count: "))
-position = int(raw_input("Enter position:"))
-for i in range(count):
-    html = urllib.urlopen(url).read()
-    soup = BeautifulSoup(html)
+import re
 
+# url = 'http://python-data.dr-chuck.net/known_by_Fikret.html'
+url = 'http://python-data.dr-chuck.net/known_by_Blanka.html'
+print (url)
+
+pageCount = 0
+while pageCount < 7:
+    html = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(html, 'html.parser')
     tags = soup('a')
-    s = []
-    t = []
+    inPageCount = 0
     for tag in tags:
-        x = tag.get('href', None)
-        s.append(x)
-        y = tag.text
-        t.append(y)
-    
-    print s[position-1]
-    print t[position-1]
-    url = s[position-1]
+        inPageCount += 1
+        print(tag)
+        if inPageCount == 18:
+            url = tag.get('href', None)
+            print (url)
+    pageCount += 1
 
+name = re.findall('http:\/\/python-data.dr-chuck.net\/known_by_([a-zA-Z]+).html', url)
+print (name[0])

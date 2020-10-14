@@ -7,21 +7,30 @@ Sample data: http://python-data.dr-chuck.net/comments_42.xml (Sum=2553)
 Actual data: http://python-data.dr-chuck.net/comments_353536.xml (Sum ends with 90)
 You do not need to save these files to your folder since your program will read the data directly from the URL. Note: Each student will have a distinct data url for the assignment - so only use your own data url for analysis.
 '''
-import urllib
 import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
+import urllib.request, urllib.parse, urllib.error
 
-url = raw_input("Enter - ")
-uh = urllib.urlopen(url)
-data = uh.read()
+url = input('URL? ')
+html = urllib.request.urlopen(url).read()
+tree = ET.fromstring(html)
 
-tree = ET.fromstring(data)
-results = tree.findall('comments/comment')
-count =0
-sum=0
-for item in results:
-    x = int(item.find('count').text)
-    count =count+1
-    sum = sum+x
+mySum = 0
 
-print "Count : ",count
-print "Sum : ",sum
+for attr in tree.getiterator('count'):
+    mySum += int(attr.text)
+    print(attr.text)
+print (mySum)
+
+# data = ''' <person>
+#             <name>Chuck</name>
+#             <phone type = "intl"> +1 743 303 4456 </phone>
+#             <email hide="yes" german="true"/>
+#             </person>'''
+
+# tree = ET.fromstring(data)
+# print('Name: ', tree.find('name').text)
+# print('Atttr: ', tree.find('email').get('german'))
+
+# for attr in tree.getiterator('email'):
+#     print(attr.attrib)
