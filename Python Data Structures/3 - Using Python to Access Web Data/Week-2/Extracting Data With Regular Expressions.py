@@ -4,7 +4,7 @@ You will extractall the numbers in the file and compute the sum of the numbers.
 '''
 
 import re
-filename = input('Gib file alter!')
+filename = input('File?')
 
 lines = open (filename , 'r')
 
