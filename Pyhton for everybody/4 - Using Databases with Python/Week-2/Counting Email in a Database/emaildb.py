@@ -36,20 +36,59 @@ got from the previous course.
 
 import urllib.request, urllib.parse
 import sqlite3
+import re
+
+# url not working 
+url = 'https://www.py4e.com/code/mbox.txt'
+user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+headers={'User-Agent':user_agent,} 
+request = urllib.request.Request(url, None, headers)
+uh = urllib.request.urlopen(request)
+data = uh.read().decode()
+
+# data = open('D:\Dokumente\Programming\OnlineCourses\Pyhton for everybody\Textfiles\mbox.txt')
 
 conn = sqlite3.connect('emaildb.sqlite')
 cur = conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS Counts')
 
-cur.execute('CREATE TABLE Counts (domain TEXT, count INTEGER)')
+cur.execute('CREATE TABLE Counts (org TEXT, count INTEGER)')
 
-fname = input('Please insert data file: ')
-if len(fname) < 1 : fname = 'E:\Dokumente\Online Courses\Code\Pyhton for everybody\Textfiles\mbox-short.txt'
-lines = open(fname)
-for line in lines:
-    print (line)
+# print(data)
 
+data = data.rstrip()
+# print ('==================================')
+
+# print(data)
+
+# print (type(data))
+
+print('Writing to database')
+
+for line in data.splitlines(True):
+    # print(line)
+    # line = line.rstrip()
+    org = re.findall('From .*@([a-zA-Z.]+)', line)
+
+    if len(org) < 1: continue
+    # add org to database
+    org = org[0]
+    print (org)
+
+    cur.execute('SELECT count FROM Counts WHERE org = ?', (org,))
+    row = cur.fetchone()
+
+    if row is None:
+        cur.execute('INSERT INTO Counts (org, count) VALUES (?,1)', (org,))
+    else:
+        cur.execute('UPDATE Counts SET count = count + 1 WHERE org = ?', (org,))
+    
 conn.commit()
+
+sqlstr = 'SELECT org, count FROM Counts ORDER BY count DESC LIMIT 10'
+
+for row in cur.execute(sqlstr):
+    print(row[0], row[1])
 
 cur.close()
