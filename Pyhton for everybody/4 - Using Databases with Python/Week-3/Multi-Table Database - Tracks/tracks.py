@@ -43,54 +43,9 @@ D.T.    AC/DC   Who Made Who    Rock
 For Those About To Rock (We Salute You) AC/DC   Who Made Who    Rock
 """
 
-import xml.etree.ElementTree as ET
 import sqlite3
+import xml.etree.ElementTree as ET
 
-conn = sqlite3.connect('trackdb.sqlite')
-cur = conn.cursor()
-
-# Make some fresh tables using executescript()
-cur.executescript('''
-DROP TABLE IF EXISTS Artist;
-DROP TABLE IF EXISTS Genre; 
-DROP TABLE IF EXISTS Album;
-DROP TABLE IF EXISTS Track;
-
-
-CREATE TABLE Artist (
-    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    name    TEXT UNIQUE
-);
-
-CREATE TABLE Genre (
-    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    name    TEXT UNIQUE
-);
-
-
-CREATE TABLE Album (
-    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    artist_id  INTEGER,
-    title   TEXT UNIQUE
-);
-
-CREATE TABLE Track (
-    id  INTEGER NOT NULL PRIMARY KEY 
-        AUTOINCREMENT UNIQUE,
-    title TEXT  UNIQUE,
-    album_id  INTEGER,
-    genre_id  INTEGER,
-    len INTEGER, rating INTEGER, count INTEGER
-);
-''')
-
-
-fname = raw_input('Enter file name: ')
-if ( len(fname) < 1 ) : fname = 'Library.xml'
-
-# <key>Track ID</key><integer>369</integer>
-# <key>Name</key><string>Another One Bites The Dust</string>
-# <key>Artist</key><string>Queen</string>
 def lookup(d, key):
     found = False
     for child in d:
@@ -99,52 +54,87 @@ def lookup(d, key):
             found = True
     return None
 
-stuff = ET.parse(fname)
-all = stuff.findall('dict/dict/dict')
-print 'Dict count:', len(all)
-for entry in all:
-    if ( lookup(entry, 'Track ID') is None ) : continue
+# file paths
+path = 'D:\\Dokumente\\Programming\\OnlineCourses\\Pyhton for everybody\\4 - Using Databases with Python\\Week-3\\Multi-Table Database - Tracks\\'
+dbLoc = path + 'trackdb.sqlite'
+xmlLoc = path + 'Library.xml'
 
-    name = lookup(entry, 'Name')
-    artist = lookup(entry, 'Artist')
-    album = lookup(entry, 'Album')
-    #added this
-    genre = lookup(entry,'Genre')
-    count = lookup(entry, 'Play Count')
-    rating = lookup(entry, 'Rating')
+conn = sqlite3.connect(dbLoc)
+cur = conn.cursor()
+
+cur.executescript(''' DROP TABLE IF EXISTS Artist;
+                DROP TABLE IF EXISTS Genre;
+                DROP TABLE IF EXISTS Album;
+                DROP TABLE IF EXISTS Track;
+''')
+
+cur.executescript('''CREATE TABLE Artist (
+                id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                name    TEXT UNIQUE
+            );
+            CREATE TABLE Genre (
+                id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                name    TEXT UNIQUE
+            );
+            CREATE TABLE Album (
+                id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                artist_id  INTEGER,
+                title   TEXT UNIQUE
+            );
+            CREATE TABLE Track (
+                id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                title TEXT  UNIQUE,
+                album_id  INTEGER,
+                genre_id  INTEGER,
+                len INTEGER,
+                rating INTEGER,
+                count INTEGER
+            );
+''')
+
+tree = ET.parse(xmlLoc)
+
+allTracks = tree.findall('dict/dict/dict')
+print (len(allTracks))
+
+for entry in allTracks:
+    if (lookup(entry, 'Track ID') is None): continue
+
+    name = (lookup(entry, 'Name'))
+    artist = (lookup(entry, 'Artist'))
+    album = (lookup(entry, 'Album'))
+    genre = (lookup(entry, 'Genre'))
     length = lookup(entry, 'Total Time')
+    rating = lookup(entry, 'Rating')
+    count = lookup(entry, 'Play Count')
 
-    if name is None or artist is None or album is None or genre is None: 
-        continue
+    if name is None or artist is None or album is None or genre is None: continue
+    print(name,', ', artist, ', ', genre, ', ', album)
+    
+    # add song to db
+    cur.execute('INSERT OR IGNORE INTO Artist (name) VALUES (?)',(artist,) )
+    cur.execute('SELECT id FROM Artist WHERE name = ?', (artist,))
+    artist_id = cur.fetchone()[0] 
 
-    print name, artist, album, genre, count, rating, length
-
-    cur.execute('''INSERT OR IGNORE INTO Artist (name) 
-        VALUES ( ? )''', ( artist, ) )
-    cur.execute('SELECT id FROM Artist WHERE name = ? ', (artist, ))
-    artist_id = cur.fetchone()[0]
-    #Added this
-    cur.execute('''INSERT OR IGNORE INTO Genre (name) 
-        VALUES ( ? )''', ( genre, ) )
-    cur.execute('SELECT id FROM Genre WHERE name = ? ', (genre, ))
+    cur.execute('INSERT OR IGNORE INTO Genre (name) VALUES (?)',(genre,) )
+    cur.execute('SELECT id FROM Genre WHERE name = ?', (genre,))
     genre_id = cur.fetchone()[0]
 
-    cur.execute('''INSERT OR IGNORE INTO Album (title, artist_id) 
-        VALUES ( ?, ? )''', ( album, artist_id ) )
-    cur.execute('SELECT id FROM Album WHERE title = ? ', (album, ))
+    cur.execute('INSERT OR IGNORE INTO Album (title, artist_id) VALUES (?,?)', (album, artist_id))
+    cur.execute('SELECT id FROM Album WHERE title = ?', (album,))
     album_id = cur.fetchone()[0]
 
-    cur.execute('''INSERT OR REPLACE INTO Track
-        (title, album_id, genre_id, len, rating, count) 
-        VALUES ( ?, ?, ?, ?, ?, ? )''', 
-        ( name, album_id, genre_id, length, rating, count ) )
+    cur.execute('INSERT OR REPLACE INTO Track (title, album_id, genre_id, len, rating, count) VALUES (?,?,?,?,?,?)', (name, album_id, genre_id, length, rating, count))
 
-    conn.commit()
-#Added this
-sqlstr = 'SELECT Track.title, Artist.name, Album.title, Genre.name FROM Track JOIN Genre JOIN Album JOIN Artist ON Track.genre_id = Genre.ID and Track.album_id = Album.id AND Album.artist_id = Artist.id ORDER BY Artist.name LIMIT 3'
 
-print
-for row in cur.execute(sqlstr) :
-    print str(row[0]),str(row[1]),str(row[2]),str(row[3])
+conn.commit()
+
+cur.execute('''SELECT Track.title, Artist.name, Album.title, Genre.name 
+    FROM Track JOIN Genre JOIN Album JOIN Artist 
+    ON Track.genre_id = Genre.ID and Track.album_id = Album.id 
+        AND Album.artist_id = Artist.id
+    ORDER BY Artist.name LIMIT 3''')
+res = cur.fetchall()
+print (res)
 
 cur.close()

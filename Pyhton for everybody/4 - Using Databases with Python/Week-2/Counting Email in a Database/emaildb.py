@@ -48,7 +48,7 @@ data = uh.read().decode()
 
 # data = open('D:\Dokumente\Programming\OnlineCourses\Pyhton for everybody\Textfiles\mbox.txt')
 
-conn = sqlite3.connect('emaildb.sqlite')
+conn = sqlite3.connect('D:\\Dokumente\\Programming\\OnlineCourses\\Pyhton for everybody\\4 - Using Databases with Python\\Week-2\\Counting Email in a Database\\emaildb.sqlite')
 cur = conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS Counts')
@@ -74,7 +74,7 @@ for line in data.splitlines(True):
     if len(org) < 1: continue
     # add org to database
     org = org[0]
-    print (org)
+    # print (org)
 
     cur.execute('SELECT count FROM Counts WHERE org = ?', (org,))
     row = cur.fetchone()
@@ -84,6 +84,7 @@ for line in data.splitlines(True):
     else:
         cur.execute('UPDATE Counts SET count = count + 1 WHERE org = ?', (org,))
     
+print('committing to database')
 conn.commit()
 
 sqlstr = 'SELECT org, count FROM Counts ORDER BY count DESC LIMIT 10'
