@@ -20,68 +20,57 @@ SELECT hex(User.name || Course.title || Member.role ) AS X FROM
 Find the first row in the resulting record set and enter the long string that
 looks like 53656C696E613333. 
 """
-
-import json
 import sqlite3
+import json
 
-conn = sqlite3.connect('rosterdb.sqlite')
+path = 'D:\\Dokumente\\Programming\\OnlineCourses\\Pyhton for everybody\\4 - Using Databases with Python\\Week-4\\'
+dbfile = path + 'rosterdb.sqlite'
+fname = path + 'roster_data.json'
+
+data = open(fname).read()
+info = json.loads(data)
+
+conn = sqlite3.connect(dbfile)
 cur = conn.cursor()
 
-# Do some setup
 cur.executescript('''
-DROP TABLE IF EXISTS User;
-DROP TABLE IF EXISTS Member;
-DROP TABLE IF EXISTS Course;
-
-CREATE TABLE User (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    name   TEXT UNIQUE
-);
-
-CREATE TABLE Course (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    title  TEXT UNIQUE
-);
-
-CREATE TABLE Member (
-    user_id     INTEGER,
-    course_id   INTEGER,
-    role        INTEGER,
-    PRIMARY KEY (user_id, course_id)
-)
+    DROP TABLE IF EXISTS User;
+    DROP TABLE IF EXISTS Course;
+    DROP TABLE IF EXISTS Member; 
 ''')
 
-fname = raw_input('Enter file name: ')
-if ( len(fname) < 1 ) : fname = 'roster_data.json'
+cur.executescript('''
+    CREATE TABLE User(
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        name TEXT UNIQUE
+    );
 
-# [
-#   [ "Charley", "si110", 1 ],
-#   [ "Mea", "si110", 0 ],
-
-str_data = open(fname).read()
-json_data = json.loads(str_data)
-
-for entry in json_data:
-
-    name = entry[0];
-    title = entry[1];
-    role = entry[2];
-    print name, title, role
-
-    cur.execute('''INSERT OR IGNORE INTO User (name) 
-        VALUES ( ? )''', ( name, ) )
-    cur.execute('SELECT id FROM User WHERE name = ? ', (name, ))
-    user_id = cur.fetchone()[0]
-
-    cur.execute('''INSERT OR IGNORE INTO Course (title) 
-        VALUES ( ? )''', ( title, ) )
-    cur.execute('SELECT id FROM Course WHERE title = ? ', (title, ))
-    course_id = cur.fetchone()[0]
-
+    CREATE TABLE Course(
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        title TEXT UNIQUE
+    );
     
-    
-    cur.execute('''INSERT OR REPLACE INTO Member
-        (user_id, course_id, role) VALUES ( ?, ?, ? )''', 
-        ( user_id, course_id, role ) )
+    CREATE TABLE Member(
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        user_id INTEGER,
+        course_id INTEGER,
+        role INTEGER
+    )
+''')
 
-    conn.commit()
+for person in info:
+    name = person[0]
+    cur.execute('INSERT OR IGNORE INTO User (name) VALUES (?)', (name, ))
+    cur.execute('SELECT id FROM User WHERE name = ?', (name,))
+    user_id = cur.fetchone()[0] 
+
+    course = person[1]
+    cur.execute('INSERT OR IGNORE INTO Course (title) VALUES (?)', (course, ))
+    cur.execute('SELECT id FROM Course WHERE title = ?', (course,))
+    course_id = cur.fetchone()[0] 
+
+    role = person[2]
+    cur.execute('INSERT OR IGNORE INTO Member (user_id, course_id, role) VALUES (?,?,?)', (user_id, course_id, role))
+
+conn.commit()
+cur.close()
