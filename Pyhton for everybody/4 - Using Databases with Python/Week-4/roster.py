@@ -57,7 +57,7 @@ cur.executescript('''
         role INTEGER
     )
 ''')
-
+'Author David S'
 for person in info:
     name = person[0]
     cur.execute('INSERT OR IGNORE INTO User (name) VALUES (?)', (name, ))
