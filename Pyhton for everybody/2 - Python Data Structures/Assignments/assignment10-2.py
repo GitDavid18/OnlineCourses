@@ -27,7 +27,7 @@ for key, value in wordcount.items():
     newTup = (value, key)
     wordList.append(newTup)
 
-wordList.sort(reverse=True)
+wordList.sort(key=lambda a: a[1])
 
 for val, key in wordList:
     print (key, val)
