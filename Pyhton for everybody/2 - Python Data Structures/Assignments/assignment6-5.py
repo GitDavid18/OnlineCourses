@@ -3,7 +3,7 @@
 
 text = "X-DSPAM-Confidence:    0.8475";
 
-sliced = text.split()
-number = float(sliced[1])
+sliced = text.find(' ')
+number = float(text[sliced:])
 
 print (number)
