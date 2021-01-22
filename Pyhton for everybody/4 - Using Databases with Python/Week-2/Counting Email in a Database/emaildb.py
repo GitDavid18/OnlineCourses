@@ -39,7 +39,7 @@ import sqlite3
 import re
 
 # url not working 
-url = 'https://www.py4e.com/code/mbox.txt'
+url = ' http://www.py4e.com/code3/mbox.txt'
 user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
 headers={'User-Agent':user_agent,} 
 request = urllib.request.Request(url, None, headers)
