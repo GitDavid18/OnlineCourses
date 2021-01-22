@@ -11,7 +11,8 @@ import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
 
-url = input('URL? ')
+# url = input('URL? ')
+url = 'http://py4e-data.dr-chuck.net/comments_1022013.xml'
 html = urllib.request.urlopen(url).read()
 tree = ET.fromstring(html)
 

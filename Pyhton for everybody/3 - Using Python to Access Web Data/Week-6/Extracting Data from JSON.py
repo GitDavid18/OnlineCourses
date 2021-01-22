@@ -9,7 +9,8 @@ You do not need to save these files to your folder since your program will read 
 import json
 import urllib.parse, urllib.request, urllib.error
 
-url = input ('Give url: ')
+# url = input ('Give url: ')
+url = 'http://py4e-data.dr-chuck.net/comments_1022014.json'
 
 uh = urllib.request.urlopen(url)
 data = uh.read().decode()

@@ -17,9 +17,11 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import re
 
-# url = 'http://python-data.dr-chuck.net/known_by_Fikret.html'
-url = 'http://python-data.dr-chuck.net/known_by_Blanka.html'
+# url = 'http://py4e-data.dr-chuck.net/known_by_Fikret.html'
+url =  'http://py4e-data.dr-chuck.net/known_by_Amelia.html'
 print (url)
+
+
 
 pageCount = 0
 while pageCount < 7:
@@ -29,11 +31,12 @@ while pageCount < 7:
     inPageCount = 0
     for tag in tags:
         inPageCount += 1
-        print(tag)
+        print('tag: ', tag)
         if inPageCount == 18:
             url = tag.get('href', None)
-            print (url)
+            print ('\n new url: ',url)
     pageCount += 1
 
-name = re.findall('http:\/\/python-data.dr-chuck.net\/known_by_([a-zA-Z]+).html', url)
+name = re.findall('http:\/\/py4e-data.dr-chuck.net\/known_by_([a-zA-Z]+).html', url)
+print(name)
 print (name[0])

@@ -12,10 +12,13 @@ count = 0
 sumUp = 0.0
 
 for line in lines:
+    # print (line)
     # This only finds floats. If ints are wanted it is [0-9]+
-    matches = re.findall('\s([0-9]+[.][0-9]+)\s', line)
+    # matches = re.findall('\s([0-9]+[.][0-9]+)\s', line)
+    matches = re.findall('[0-9]+', line)
     if len(matches) == 0: continue
     for match in matches:
+        print (match)
         sumUp += float(match)
         count += 1
     # print (line, matches)

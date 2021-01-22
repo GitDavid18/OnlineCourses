@@ -14,12 +14,13 @@ To call the API, you need to provide a sensor=false parameter and the address th
 import json
 import urllib.parse, urllib.request
 
-location = input('Location? ')
-# if len(location) < 1: break
-# url = serviceurl + urllib.urlencode({'sensor':'false', 'address': address})
-serviceUrl = 'http://python-data.dr-chuck.net/geojson?'
+# location = input('Location? ')
+location = 'University of Notre Dame'
+# location = 'South Federal University'
+serviceUrl = 'http://py4e-data.dr-chuck.net/json?'
 
-url = serviceUrl + urllib.parse.urlencode({'sensor':'false', 'address': location})
+# url = serviceUrl + urllib.parse.urlencode({'sensor':'false','key': '42','address': location})
+url = serviceUrl + urllib.parse.urlencode({'address': location, 'key': '42',})
 print ('URL: ', url)
 # uh = urllib.request.urlopen(url)
 uh = urllib.request.urlopen(url)

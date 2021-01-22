@@ -21,7 +21,7 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import re
 
-url = 'http://python-data.dr-chuck.net/comments_353539.html'
+url = ' http://py4e-data.dr-chuck.net/comments_1022011.html'
 # url = 'http://python-data.dr-chuck.net/comments_42.html'
 # print (url)
 
