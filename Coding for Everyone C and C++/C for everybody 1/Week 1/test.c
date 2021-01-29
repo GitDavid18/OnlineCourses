@@ -3,8 +3,7 @@
 #define PI 3.14159
 
 int main(){
-    printf("Hello\n
-    My name is David");
+    printf("Hello\nMy name is David");
 
     // double area = 0.0, radius = 0.0;
     // printf("Enter radius: ");
