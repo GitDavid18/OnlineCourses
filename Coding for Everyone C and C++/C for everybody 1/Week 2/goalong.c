@@ -13,4 +13,24 @@ int main(void){
     int kilometers;
     kilometers = 1.609 * (miles + yards/1760.0);
     printf("\nA marathon is %lf kilometers.\n", kilometers);
+    test();
+}
+
+void test(void)
+{
+   int  a = 0, b = 1, c = 2;
+   
+   if(a < b){
+        printf (" TRUE\n"); 
+   }
+   else{ printf(" FALSE\n");
+   }
+
+   if (a < b - c) {
+       printf (" TRUE\n");
+       } else printf(" FALSE\n");   
+   
+   if (b < c - 1) printf (" TRUE\n"); else printf(" FALSE\n"); 
+
+   if (!c) printf (" TRUE\n"); else printf(" FALSE\n");
 }
