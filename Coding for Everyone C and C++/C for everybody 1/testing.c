@@ -15,9 +15,13 @@ long rec_fibonaci(int n){
 }
 
 int main(void){
+   
+    int a = 1, b = 2, c = 3;
+    int *i = &a, *k = &b;
+    printf("%d, %d\n",i, k);
     int n = 24;
     for (int i = 1; i <= n; i++){
-        printf("%d -> %ld\n", i, rec_fibonaci(i));
+        // printf("%d -> %ld\n", i, rec_fibonaci(i));
     }
     
 
