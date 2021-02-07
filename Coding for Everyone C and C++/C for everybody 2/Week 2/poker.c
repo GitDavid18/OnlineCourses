@@ -2,11 +2,15 @@
 #include<stdlib.h>
 
 typedef enum suits{clubs, spades, heart, diamond} suits;
+typedef enum hand{royalFlush, straightFlush, fours, fullHouse, flush, straight, threes, twoPair, pair, highCard} hand;
 
 typedef struct card{short pips; suits suit;} card;
 
+int result[10] = {0};
+
 card deckOfCards[52] = {0};
 
+// print a card to the screen
 void printCard(card input){
     printf("%d of ", input.pips);
 
@@ -20,6 +24,7 @@ void printCard(card input){
     printf("\n");
 }
 
+//print out the current state of the deck
 void printDeck(card deck[52]){
     printf("Current deck:\n");
     for (int i = 0; i < 52; i++){
@@ -27,24 +32,14 @@ void printDeck(card deck[52]){
     }
 }
 
+//exchange two input cards
 void swapCards(card *card1, card *card2){
-    // printf("Swapping: ");
-    // printCard(*card1);
-    // printf(" and ");
-    // printCard(*card2);
-
     card temp = *card1;
-    // printf("Temp:");
-    // printCard(temp);
-
     *card1 = *card2;
-    // printf("card1:");
-    // printCard(*card1);
-
-
     *card2 = temp;
 }
 
+//randomly change 1000 positions of cards in the deck
 void shuffleDeck(card deck[52]){
     srand(time(0));
     int cardSwaps = 1000;
@@ -60,6 +55,7 @@ void shuffleDeck(card deck[52]){
     printf("Deck shuffled. %d cards were swapped.\n", cardSwaps);
 }
 
+//Each card in the deck gets a number < 14 (King would be 13) and a suit
 void createDeck(void){
     for (int i = 1; i < 14; i++){
         for (int j = 0; j < 4; j++){
@@ -72,11 +68,38 @@ void createDeck(void){
     printf("Deck created.\n");
 }
 
+void runTest(card deck[52]){
+    printf("Running Test\n");
+
+    // The first 7 cards are the ones the dealer deals you
+    // That would not be the case in a casino but is good enough for our test
+    for(int i = 0; i < 7; i++){
+        
+    }
+}
+
+// print the results of our test to the screen
+void evaluateTests(int testsRun){
+    for (int i = 0; i < 10; i++){
+        printf("%2d \t %5.5lf  \t %5.5lf\n", i, result[i], result[i] / testsRun);
+    }
+}
+
 int main(void){
+    int maxTests = 10;
+
     createDeck();
     shuffleDeck(deckOfCards);
     // printDeck(deckOfCards);
+
+    for (int i = 0; i < maxTests; i++){
+        shuffleDeck(deckOfCards);
+        runTest(deckOfCards);
+    }
+
+    evaluateTests(maxTests);
     //deal 7 cards
     //find poker relevant things
+    //evaluate
     return 0;
 }
