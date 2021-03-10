@@ -1,5 +1,3 @@
-oid swapCards(card deck[52], int card1, int card2){
-//     card *temp = &deck[card1];
-//     *
-
-// }
+f(i % (maxTests /100) == 0 ){
+        //     printf("Running test %2.0lf%% \n", 100.0 * i / maxTests );
+        // }
