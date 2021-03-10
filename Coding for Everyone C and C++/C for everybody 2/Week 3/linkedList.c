@@ -47,16 +47,26 @@ void printList(list *l){
 
 //====== Sorting algorithm begin =======
 
-void bubblesort(list *input){
-    
-}
-
 void swap (list *a, list  *b){
-    printf("swapping a: %d & b: %d\n",a->number , b->number);
     int temp = a -> number;
     a -> number = b -> number;
     b -> number = temp;
 }
+
+void bubblesort(list *input, int length){
+    list* cur = input;
+    for (int i = 0; i < length - 1; i++){
+        if (cur -> number > cur -> next -> number){
+            swap(cur, cur -> next);
+        }
+        cur = cur -> next;
+    }
+
+    if(length > 2){
+        bubblesort(input, length - 1);
+    }
+}
+
 
 //====== Sorting algorithm end =======
 
@@ -64,17 +74,15 @@ int main(void){
     
     time_t t;
     srand((unsigned) time(NULL));
+    int listLength= 100;
 
     list*  myList = createList(rand());
-    for(int i = 5; i > 0; i--){
-        //int num = rand();
-        int num = i;
-        // printf("adding to front: %d \n", num);
+    for(int i = listLength - 1; i > 0; i--){
+        int num = rand();
         myList = addToFront(num ,myList);
     }
     printList(myList);
-    swap(myList -> next, myList -> next -> next);
-
+    bubblesort(myList, listLength);
     printList(myList);
     return 0;
 }
