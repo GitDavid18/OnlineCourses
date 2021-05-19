@@ -16,7 +16,7 @@ class  Matrix2D
     void print(){
         // std::cout << "Printing a matrix the size of: " << sizeX << ", " << sizeY << std::endl;
         for (unsigned int i = 0; i < sizeY * sizeX; i++){
-            std::cout << data[i] << " ";
+            std::cout << data[i] << "\t";
             if ((i + 1) % sizeX == 0){
                 std::cout << std::endl;
             }

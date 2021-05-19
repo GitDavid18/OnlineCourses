@@ -1,17 +1,20 @@
 #include <iostream>
 #include "Matrix2D.cpp"
+#include <vector>
 
 using namespace std;
 
 class Graph
 {
-    Matrix2D<int> connectivity;
+    Matrix2D<double> connectivity;
+    vector<double> nodeValues;
     unsigned const int numNodes;
     unsigned int numEdges;
 
 public:
     Graph(unsigned int numberOfNodes):  connectivity(numberOfNodes, numberOfNodes), numNodes(numberOfNodes)
     {
+        connectivity(0,0) = 0.0;
         numEdges = 0;
     }
 
@@ -24,13 +27,13 @@ public:
     }
 
     bool adjacent(int nodeA, int nodeB){
-        return connectivity(nodeA, nodeB) == 0 ? false : true;
+        return connectivity(nodeA, nodeB) == 0.0 ? false : true;
     }
 
     void neighbors (int node){
         cout << "Neighbors of " << node << " are: ";
         for (int i = 0; i < numNodes; i++){
-            if (i != node && connectivity(node, i ) != 0 ){
+            if (i != node && connectivity(node, i ) != 0.0 ){
                 cout << i << ", ";
             }
         }
@@ -38,23 +41,31 @@ public:
         cout << endl;
     }
 
-    void add (int nodeA, int nodeB, int value){
+    void add (int nodeA, int nodeB, double value){
         connectivity(nodeA, nodeB) = value;
         connectivity(nodeB, nodeA) = value;
         numEdges++;
     }
 
     void remove (int nodeA, int nodeB){
-        connectivity(nodeA, nodeB) = 0;
-        connectivity(nodeB, nodeA) = 0;
+        connectivity(nodeA, nodeB) = 0.0;
+        connectivity(nodeB, nodeA) = 0.0;
         numEdges--;
+    }
+
+    double get_node_value(int nodeA){
+        return nodeValues[nodeA];
+    }
+
+    void set_node_value(int nodeA, double value){
+        nodeValues[nodeA] = value;
     }
 
     int get_edge_value(int nodeA, int nodeB){
         return connectivity(nodeA, nodeB);
     }
 
-    void set_edge_value(int nodeA, int nodeB, int value){
+    void set_edge_value(int nodeA, int nodeB, double value){
         connectivity(nodeA, nodeB) = value;
     }
     
