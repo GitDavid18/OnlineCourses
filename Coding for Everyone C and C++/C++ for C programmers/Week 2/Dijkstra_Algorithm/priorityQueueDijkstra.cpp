@@ -1,5 +1,4 @@
 #include<iostream>
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -8,9 +7,7 @@ using namespace std;
 // int = node number, double = priority
 typedef pair <int, double> priorityNode;
 
-// Structure of the condition
-// for sorting the pair by its
-// second elements
+// Structure of the condition for sorting the pair by its second elements
 struct myComp {
     constexpr bool operator()(
         pair<int, double> const& a,
@@ -24,15 +21,20 @@ struct myComp {
 class PriorityQueue{
 
     private:
-    priority_queue <priorityNode, vector<priorityNode>, greater<myComp> > min_heap; 
+    priority_queue <priorityNode, vector<priorityNode>, myComp > min_heap;
 
     public:
     PriorityQueue(){}
 
     void chgPriority(priorityNode queue_element, double priority){
-        priorityNode temp = find (queue_element)
-        if(temp != nullptr){
-            temp.setPriority(priority);
+        priority_queue <priorityNode, vector<priorityNode>, myComp > elements = min_heap;
+        while(!elements.empty()){
+            priorityNode temp = elements.top();
+
+            if(temp.first == queue_element.first && temp.second == queue_element.second){
+                temp.second = priority;
+            }
+            elements.pop();
         }
     }
 
@@ -42,12 +44,22 @@ class PriorityQueue{
     }
 
     void insert(priorityNode queue_element){
-        min_heap.push(queue_element)
+        min_heap.push(queue_element);
         // nodes.insert(queue_element);
     }
 
     bool contains(priorityNode queue_element){ 
-        return find(queue_element) == nullptr ? false : true;
+        priority_queue <priorityNode, vector<priorityNode>, myComp > elements = min_heap;
+        while(!elements.empty()){
+            priorityNode temp = elements.top();
+
+            if(temp.first == queue_element.first && temp.second == queue_element.second){
+                return true;
+            }
+
+            elements.pop();
+        }
+        return false;
         //  return nodes.find(queue_element) == nodes.end() ? false : true;
     }
 
