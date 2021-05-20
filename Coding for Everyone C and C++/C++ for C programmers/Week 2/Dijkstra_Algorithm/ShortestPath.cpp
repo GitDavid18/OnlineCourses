@@ -1,7 +1,8 @@
 #include <iostream>
-#include "graph.cpp"
 #include <time.h>
 #include <random>
+#include "graph.cpp"
+#include "priorityQueueDijkstra.cpp"
 
 using namespace std;
 
@@ -10,6 +11,7 @@ double minDist = 1.0;
 double maxDist = 10.0;
 double density = 0.4;
 Graph* connections = new Graph(1);
+PriorityQueue* costs = new PriorityQueue(1);
 // Graph connections();
 
 double randNum(double MAX, double MIN = 0.0){
@@ -28,11 +30,33 @@ void createRandomGraph(){
             //add a connection with a probability of density
             if(randNum(1.0) <= density){
                 // add a new connection rounded to 2 decimal numbers
-                 connections -> add(i,j, round(randNum(maxDist, minDist) *100.0 ) / 100.0);
+                 connections -> add(i,j, round(randNum(maxDist, minDist) * 100.0 ) / 100.0);
             }
         }
     }
     
+}
+
+//returns the path form start to end if exists
+vector<int> path(int start, int end){
+    vector<int> shortestPath;
+    costs = new PriorityQueue(connections -> nodes);
+    int curNode = start;
+    for (int i = 0 ; i < connections -> nodes; i++){
+        if (curNode != i){
+            // u[date the costs 
+        }
+    }
+
+
+    return shortestPath;
+}
+
+
+//returns the length of the shortest path from start to end
+double path_size(int start, int end){
+    path(start, end);
+    return connections->get_node_value(end);
 }
 
 int main(){
@@ -45,6 +69,8 @@ int main(){
     for (int i = 0; i < numNodes; i++){
         connections -> neighbors(i);
     }
+
+
 
     return 0;
 }

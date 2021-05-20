@@ -24,7 +24,11 @@ class PriorityQueue{
     priority_queue <priorityNode, vector<priorityNode>, myComp > min_heap;
 
     public:
-    PriorityQueue(){}
+    PriorityQueue(int numberOfNodes){
+        for (int i = 0; i < numberOfNodes; i++){
+            min_heap.push(priorityNode(i, INFINITY));
+        }
+    }
 
     void chgPriority(priorityNode queue_element, double priority){
         priority_queue <priorityNode, vector<priorityNode>, myComp > elements = min_heap;
