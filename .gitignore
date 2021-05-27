@@ -5,3 +5,4 @@ Desktop.ini
 config.py
 .vscode/
 *.exe
+out/
