@@ -4,6 +4,16 @@ public class Document {
     private String content;
     private String fontName;
     private int fontSize;
+    
+    public Memento createState() {
+    	return new Memento(content, fontName, fontSize);
+    }
+    
+    public void restore (Memento state) {
+    	this.content = state.getContent();
+    	this.fontName = state.getFont();
+    	this.fontSize = state.getFontSize();
+    }
 
     public String getContent() {
         return content;

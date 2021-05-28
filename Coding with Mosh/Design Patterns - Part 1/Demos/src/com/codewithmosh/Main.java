@@ -12,5 +12,9 @@ public class Main {
     	    	
     	System.out.println(user.name);
     	user.sayHello();
+    	
+    	
+    	var account = new Account();
+    	
     }
 }
