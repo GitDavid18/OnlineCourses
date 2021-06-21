@@ -1,6 +1,4 @@
-package com.codewithmosh.mediator;
-
-import com.codewithmoshDemos.mediator.UIControl;
+package com.codewithmoshSolutions.mediator;
 
 public class Button extends UIControl {
     private boolean isEnabled;
@@ -11,5 +9,6 @@ public class Button extends UIControl {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+        notifyEventHandlers();
     }
 }

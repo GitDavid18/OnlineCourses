@@ -1,6 +1,4 @@
-package com.codewithmosh.mediator;
-
-import com.codewithmoshDemos.mediator.UIControl;
+package com.codewithmoshSolutions.mediator;
 
 public class TextBox extends UIControl {
     private String content;
@@ -11,5 +9,10 @@ public class TextBox extends UIControl {
 
     public void setContent(String content) {
         this.content = content;
+        notifyEventHandlers();
+    }
+
+    public boolean isEmpty() {
+        return content == null || content.isEmpty();
     }
 }
