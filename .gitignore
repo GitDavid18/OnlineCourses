@@ -6,3 +6,5 @@ config.py
 .vscode/
 *.exe
 out/
+*.iml
+.idea/

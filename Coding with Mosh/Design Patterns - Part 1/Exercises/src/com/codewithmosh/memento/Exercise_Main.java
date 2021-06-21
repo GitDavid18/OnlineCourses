@@ -38,7 +38,7 @@ public class Exercise_Main {
 		doc.restore(history.pop());
 		System.out.println(doc.toString());
 		
-		doc.restore(history.pop());
+//		doc.restore(history.pop());
 		System.out.println(doc.toString());
 		
 
