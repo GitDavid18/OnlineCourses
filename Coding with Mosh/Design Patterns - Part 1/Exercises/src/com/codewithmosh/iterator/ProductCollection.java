@@ -10,4 +10,31 @@ public class ProductCollection {
     products.add(product);
   }
 
+  public IIterator createIterator() {
+    return new MyListIterator(this);
+  }
+
+  public class MyListIterator implements IIterator {
+    private ProductCollection allProducts;
+    private int index = 0;
+
+    public MyListIterator(ProductCollection allProds) {
+      allProducts = allProds;
+    }
+
+    @Override
+    public void next() {
+      index++;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return index < allProducts.products.size();
+    }
+
+    @Override
+    public Object current() {
+      return allProducts.products.get(index);
+    }
+  }
 }
