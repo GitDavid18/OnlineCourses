@@ -1,13 +1,17 @@
 package com.codewithmosh.template;
 
-public class Window {
+public abstract class Window {
     public void close() {
-        //TODO: custom windows may need to execute some code before the window
-        // is closed.
-
+        preClose();
         System.out.println("Removing the window from the screen");
+        postClose();
+    }
 
-        //TODO: custom windows may need to execute some code after the window
-        // is closed.
+    protected void preClose(){
+        System.out.println("My prestep.");
+    }
+
+    protected void postClose(){
+        System.out.println("My poststep.");
     }
 }
