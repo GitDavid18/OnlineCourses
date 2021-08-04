@@ -1,15 +1,15 @@
-package com.codewithmoshSolutions.command;
+package com.codewithmosh.command;
 
-public class Demo {
-    public static void main(String [] args) {
+public class Command_main {
+    public static void main(String [] args){
         var videoEditor = new VideoEditor();
         var history = new History();
 
-        var setTextCommand = new SetTextCommand("Video Title", videoEditor, history);
+        var setTextCommand = new SetTextCommand(videoEditor, history, "Video Title");
         setTextCommand.execute();
         System.out.println("TEXT: " + videoEditor);
 
-        var setContrast = new SetContrastCommand(1, videoEditor, history);
+        var setContrast = new SetContrastCommand(videoEditor, history, 1);
         setContrast.execute();
         System.out.println("CONTRAST: " + videoEditor);
 
