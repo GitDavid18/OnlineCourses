@@ -1,0 +1,7 @@
+C:\Projects\CleanCode\CleanCode.UnitTests\bin\Debug\CleanCode.UnitTests.dll
+C:\Projects\CleanCode\CleanCode.UnitTests\bin\Debug\CleanCode.UnitTests.pdb
+C:\Projects\CleanCode\CleanCode.UnitTests\bin\Debug\CleanCode.dll
+C:\Projects\CleanCode\CleanCode.UnitTests\bin\Debug\CleanCode.pdb
+C:\Projects\CleanCode\CleanCode.UnitTests\obj\Debug\CleanCode.UnitTests.csprojResolveAssemblyReference.cache
+C:\Projects\CleanCode\CleanCode.UnitTests\obj\Debug\CleanCode.UnitTests.dll
+C:\Projects\CleanCode\CleanCode.UnitTests\obj\Debug\CleanCode.UnitTests.pdb
