@@ -1,7 +1,9 @@
 ﻿//Note: For any of these exercises, ignore input validation unless otherwise directed. Assume the user enters values in the format that the program expects.
 
 
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class ArraysAndLists
 {

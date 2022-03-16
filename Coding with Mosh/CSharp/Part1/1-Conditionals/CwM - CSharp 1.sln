@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1-Conditionals", "1-Conditi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-Loops", "2-Loops\2-Loops.csproj", "{CD44A916-BFFE-493B-ACEA-6A3D4D051E3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-ArraysAndLists", "ArraysAndLists\3-ArraysAndLists.csproj", "{2D9AE33E-1191-483B-AAE0-0E0AC5FB5ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-ArraysAndLists", "3-ArraysAndLists\3-ArraysAndLists.csproj", "{2D9AE33E-1191-483B-AAE0-0E0AC5FB5ED6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4-WorkingWithText", "4-WorkingWithText\4-WorkingWithText.csproj", "{0603862C-F5AF-44CE-933F-4FD57DA2AA56}"
 EndProject
