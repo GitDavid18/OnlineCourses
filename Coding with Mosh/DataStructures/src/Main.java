@@ -1,16 +1,25 @@
 import Arrays.DynamicArray;
+import LinkedList.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        DynamicArray array = new DynamicArray(3);
-        array.insert(10);
-        array.insert(20);
-        array.insert(30);
-        array.insert(40);
-        array.print();
+        LinkedList list = new LinkedList();
+        list.AddLast(10);
+        list.PrintMiddle();
+        list.AddLast(20);
+        list.PrintMiddle();
+        list.AddLast(30);
+        list.PrintMiddle();
+        list.AddLast(40);
+        list.PrintMiddle();
 
-        array.removeAt(0);
-        array.print();
+//        list.Reverse();
+
+        System.out.println(list.GetKthFromEnd(1));
+        System.out.println(list.GetKthFromEnd(2));
+        System.out.println(list.GetKthFromEnd(3));
+
+        list.PrintMiddle();
     }
 }
