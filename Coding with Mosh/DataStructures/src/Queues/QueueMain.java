@@ -7,8 +7,32 @@ import java.util.Stack;
 public class QueueMain
 {
     public static void main(String[] args) {
-       ArrayQueueTests();
+        TestPriorityQueue();
 
+    }
+
+    private static void TestPriorityQueue(){
+        var queue = new PriorityQueue(5);
+        queue.enqueue(20);
+        queue.enqueue(50);
+
+        queue.enqueue(30);
+        queue.enqueue(40);
+        queue.enqueue(10);
+
+        System.out.println(queue.toString());
+        System.out.println("peek " + queue.peek());
+        System.out.println("dequeue " +queue.dequeue());
+        System.out.println("peek " +queue.peek());
+        System.out.println("dequeue " +queue.dequeue());
+        queue.enqueue(60);
+        System.out.println(queue.toString());
+
+        queue.enqueue(70);
+        System.out.println(queue.toString());
+
+        System.out.println("dequeue " +queue.dequeue());
+        System.out.println(queue.toString());
     }
 
     private static void ReverseQueue(){
