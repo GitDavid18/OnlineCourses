@@ -7,8 +7,9 @@ import java.util.Stack;
 public class QueueMain
 {
     public static void main(String[] args) {
-        TestPriorityQueue();
-
+        //TestPriorityQueue();
+        var x = new QueueExercises();
+        x.TestExercises();
     }
 
     private static void TestPriorityQueue(){
