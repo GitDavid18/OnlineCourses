@@ -8,8 +8,9 @@ public class QueueMain
 {
     public static void main(String[] args) {
         //TestPriorityQueue();
-        var x = new QueueExercises();
-        x.TestExercises();
+        var y = new LinkedListQueueTests();
+        //var x = new QueueExercises();
+        //x.TestExercises();
     }
 
     private static void TestPriorityQueue(){
