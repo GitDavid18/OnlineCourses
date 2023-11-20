@@ -7,10 +7,38 @@ import java.util.Stack;
 public class QueueMain
 {
     public static void main(String[] args) {
+        //Test TwoStackQueue
+       TestTwoStackQueue();
+
+
         //TestPriorityQueue();
-        var y = new LinkedListQueueTests();
+        //var y = new LinkedListQueueTests();
         //var x = new QueueExercises();
         //x.TestExercises();
+    }
+
+    private static void TestTwoStackQueue(){
+        var queue = new TwoStackQueue();
+        queue.push(11);
+        queue.push(22);
+
+        queue.push(33);
+        queue.push(44);
+        queue.push(55);
+
+        System.out.println(queue.toString());
+        System.out.println("peek " + queue.peek());
+        System.out.println("dequeue " +queue.pop());
+        System.out.println("peek " +queue.peek());
+        System.out.println("dequeue " +queue.pop());
+        queue.push(66);
+        System.out.println(queue.toString());
+
+        queue.push(77);
+        System.out.println(queue.toString());
+
+        System.out.println("dequeue " +queue.pop());
+        System.out.println(queue.toString());
     }
 
     private static void TestPriorityQueue(){

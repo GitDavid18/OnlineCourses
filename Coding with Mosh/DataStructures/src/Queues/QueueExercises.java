@@ -5,8 +5,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Stack;
 
-//3- Build a stack using two queues. Implement the following operations and calculate their runtime complexities.
-// -push -pop  -peek -size  -isEmpty
+
 public class QueueExercises {
 
     public void TestExercises(){
