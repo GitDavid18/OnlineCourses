@@ -3,21 +3,16 @@ package com.codewithmosh.composite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
-  private List<Object> resources = new ArrayList<>();
+public class Team implements IResource {
+  private List<IResource> resources = new ArrayList<>();
 
-  public void add(Object resource) {
+  public void add(IResource resource) {
     resources.add(resource);
   }
 
   public void deploy() {
     for (var resource : resources) {
-      if (resource instanceof Truck)
-        ((Truck)resource).deploy();
-      else if (resource instanceof HumanResource)
-        ((HumanResource)resource).deploy();
-      else
-        ((Team)resource).deploy();
+        resource.deploy();
     }
   }
 }
