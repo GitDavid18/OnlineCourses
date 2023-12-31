@@ -1,12 +1,10 @@
 package com.codewithmosh.flyweight;
 
 public class Cell {
+  private CellContext cellContext;
   private final int row;
   private final int column;
   private String content;
-  private String fontFamily;
-  private int fontSize;
-  private boolean isBold;
 
   public Cell(int row, int column) {
     this.row = row;
@@ -14,38 +12,26 @@ public class Cell {
   }
 
   public String getContent() {
+
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(String content)
+  {
     this.content = content;
   }
 
-  public String getFontFamily() {
-    return fontFamily;
+  public CellContext getCellContext() {
+    return cellContext;
   }
 
-  public void setFontFamily(String fontFamily) {
-    this.fontFamily = fontFamily;
+  public void setCellContext(CellContext cellContext) {
+    this.cellContext = cellContext;
   }
 
-  public int getFontSize() {
-    return fontSize;
+  public void render()
+  {
+    System.out.printf("(%d, %d): %s [%s]\n", row, column, content, cellContext.getFontFamily());
   }
 
-  public void setFontSize(int fontSize) {
-    this.fontSize = fontSize;
-  }
-
-  public boolean isBold() {
-    return isBold;
-  }
-
-  public void setBold(boolean bold) {
-    isBold = bold;
-  }
-
-  public void render() {
-    System.out.printf("(%d, %d): %s [%s]\n", row, column, content, fontFamily);
-  }
 }
