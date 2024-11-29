@@ -48,3 +48,4 @@ for (let key in person) {
 for (let index in colors) {
     console.log(index, colors[index]);
 }
+
